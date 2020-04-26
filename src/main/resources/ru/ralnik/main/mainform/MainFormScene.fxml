@@ -8,26 +8,30 @@
    <children>
       <MenuBar StackPane.alignment="TOP_CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Файл">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" text="Выход" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="Справочники">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem mnemonicParsing="false" text="Должности" />
+                  <MenuItem mnemonicParsing="false" text="Тип номера" />
+                  <MenuItem mnemonicParsing="false" text="Список номеров" />
+                  <MenuItem mnemonicParsing="false" text="Специалисты" />
+                  <MenuItem mnemonicParsing="false" text="Клиенты" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu mnemonicParsing="false" text="Справка">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" text="О программе" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Recieption list">
+          <Tab text="Ресепшен">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="332.0" prefWidth="584.0">
                      <children>
@@ -37,7 +41,7 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-          <Tab text="Reserve list">
+          <Tab text="Список зарезервированных">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
