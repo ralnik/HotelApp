@@ -10,19 +10,19 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import ru.ralnik.core.config.ControllersConfiguration;
+import ru.ralnik.core.config.entity.ViewHolder;
 
 
 @SpringBootApplication
 public class HotelApplication extends AbsractJavaFxApplicationSupport {
+
     @Value("${ui.title}")
     private String titleApp;
 
     @Qualifier("mainView")
     @Autowired
-    private ControllersConfiguration.ViewHolder view;
+    private ViewHolder view;
 
 
     public static void main(String[] args) {
@@ -30,7 +30,7 @@ public class HotelApplication extends AbsractJavaFxApplicationSupport {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         stage.setTitle(titleApp);
         stage.setScene(new Scene(view.getView()));
         stage.setResizable(true);

@@ -9,11 +9,16 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Tab;
+import javafx.scene.Scene;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import ru.ralnik.core.config.entity.ViewHolder;
 import ru.ralnik.core.db.entity.RecieptionList;
 import ru.ralnik.core.db.entity.Reserved;
 import ru.ralnik.core.db.repository.RecieptionListRepository;
@@ -25,18 +30,27 @@ import java.util.List;
 
 @SuppressWarnings("SpringJavaAutowiringInspection")
 public class FXMLMainFormController {
+
+    @Value("${ui.roomTypeFormTitle}")
+    private String roomTypeFormTitle;
+
     @Autowired
     private RecieptionListRepository recieptionListRepository;
     @Autowired
     private ReservedRepository reservedRepository;
 
+    @Qualifier("roomtypeform")
+    @Autowired
+    private ViewHolder roomTypeView;
+
     @FXML
     private TableView<RecieptionList> tableRecieptionList;
     @FXML
     private TableView<Reserved> tableReserveList;
+    @FXML
+    private MenuItem menuRoomType;
 
-    private ObservableList<RecieptionList> recieptionObservableList;
-    private ObservableList<Reserved> reservedObservableList;
+    private Stage roomTypeStage;
 
     @FXML
     public void initialize() {
@@ -52,7 +66,7 @@ public class FXMLMainFormController {
 
     private void createTableRecieptionList() {
         List<RecieptionList> recieptionList = recieptionListRepository.findAll();
-        recieptionObservableList = FXCollections.observableArrayList(recieptionList);
+        ObservableList<RecieptionList> recieptionObservableList = FXCollections.observableArrayList(recieptionList);
 
         TableColumn<RecieptionList, String> idColumn = new TableColumn<>("№");
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -75,26 +89,26 @@ public class FXMLMainFormController {
 
         TableColumn<RecieptionList, String> famSpecCol = new TableColumn("Специалист");
         famSpecCol.setCellValueFactory(param -> new SimpleObjectProperty<>(
-                param.getValue().getSpecialist().getFam() + " " +
-                        param.getValue().getSpecialist().getIm() + " " +
-                        param.getValue().getSpecialist().getOt()
+                        param.getValue().getSpecialist().getFam() + " " +
+                                param.getValue().getSpecialist().getIm() + " " +
+                                param.getValue().getSpecialist().getOt()
                 )
         );
 
         TableColumn<RecieptionList, String> fioClientCol = new TableColumn("ФИО");
         fioClientCol.setCellValueFactory(param -> new SimpleObjectProperty<>(
-                param.getValue().getClient().getFam() + " " +
-                        param.getValue().getClient().getIm() + " " +
-                        param.getValue().getClient().getOt()
+                        param.getValue().getClient().getFam() + " " +
+                                param.getValue().getClient().getIm() + " " +
+                                param.getValue().getClient().getOt()
                 )
         );
 
         TableColumn<RecieptionList, String> pasportClient = new TableColumn<>("Паспорт");
         pasportClient.setCellValueFactory(param -> new SimpleObjectProperty<>(
-                "серия: " + param.getValue().getClient().getPasportSerial() + " " +
-                " номер: " + param.getValue().getClient().getPasportNumber() + " " +
-                        "дата выдачи: " + param.getValue().getClient().getPasportRecievedDate() + " " +
-                        " кем выдан: " + param.getValue().getClient().getPasportRecievedPlace()
+                        "серия: " + param.getValue().getClient().getPasportSerial() + " " +
+                                " номер: " + param.getValue().getClient().getPasportNumber() + " " +
+                                "дата выдачи: " + param.getValue().getClient().getPasportRecievedDate() + " " +
+                                " кем выдан: " + param.getValue().getClient().getPasportRecievedPlace()
                 )
         );
 
@@ -117,9 +131,9 @@ public class FXMLMainFormController {
         tableRecieptionList.setItems(recieptionObservableList);
     }
 
-    private void createTableReserveList(){
+    private void createTableReserveList() {
         List<Reserved> reservedList = reservedRepository.findAll();
-        reservedObservableList = FXCollections.observableArrayList(reservedList);
+        ObservableList<Reserved> reservedObservableList = FXCollections.observableArrayList(reservedList);
 
         TableColumn<Reserved, String> idCol = new TableColumn<>("№");
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -178,6 +192,18 @@ public class FXMLMainFormController {
                 famSpecCol
         );
         tableReserveList.setItems(reservedObservableList);
+    }
 
+    @FXML
+    public void menuRoomTypeOnClick() {
+        if (roomTypeStage == null) {
+            roomTypeStage = new Stage();
+            roomTypeStage.setTitle(roomTypeFormTitle);
+            roomTypeStage.setScene(new Scene(roomTypeView.getView()));
+            roomTypeStage.setResizable(true);
+            roomTypeStage.centerOnScreen();
+        }
+        roomTypeStage.show();
+        roomTypeStage.setOnCloseRequest(event -> roomTypeStage.hide());
     }
 }

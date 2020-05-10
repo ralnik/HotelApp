@@ -16,7 +16,7 @@
           <Menu mnemonicParsing="false" text="Справочники">
             <items>
               <MenuItem mnemonicParsing="false" text="Должности" />
-                  <MenuItem mnemonicParsing="false" text="Тип номера" />
+                  <MenuItem fx:id="menuRoomType" mnemonicParsing="false" text="Тип номера" onAction="#menuRoomTypeOnClick"/>
                   <MenuItem mnemonicParsing="false" text="Список номеров" />
                   <MenuItem mnemonicParsing="false" text="Специалисты" />
                   <MenuItem mnemonicParsing="false" text="Клиенты" />

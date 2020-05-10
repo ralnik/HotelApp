@@ -1,6 +1,7 @@
 package ru.ralnik.core.db.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Data
 @Table(name = "roomtypes")
+@Proxy(lazy = false)
 public class RoomTypes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "true")

@@ -6,7 +6,6 @@
 package ru.ralnik;
 
 import javafx.application.Application;
-import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
@@ -16,8 +15,13 @@ public abstract class AbsractJavaFxApplicationSupport extends Application {
 
     protected ConfigurableApplicationContext context;
 
+    protected static void launchApp(Class<? extends AbsractJavaFxApplicationSupport> appClass, String[] args) {
+        AbsractJavaFxApplicationSupport.savedArgs = args;
+        Application.launch(appClass, args);
+    }
+
     @Override
-    public void init() throws Exception {
+    public void init() {
         context = SpringApplication.run(getClass(), savedArgs);
         context.getAutowireCapableBeanFactory().autowireBean(this);
     }
@@ -26,10 +30,5 @@ public abstract class AbsractJavaFxApplicationSupport extends Application {
     public void stop() throws Exception {
         super.stop();
         context.close();
-    }
-
-    protected static void launchApp(Class<? extends AbsractJavaFxApplicationSupport> appClass, String[] args) {
-        AbsractJavaFxApplicationSupport.savedArgs = args;
-        Application.launch(appClass, args);
     }
 }
