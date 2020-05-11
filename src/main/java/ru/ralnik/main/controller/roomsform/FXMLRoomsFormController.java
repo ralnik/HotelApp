@@ -133,8 +133,7 @@ public class FXMLRoomsFormController implements Initializable {
     public void buttonDeleteOnClick() {
         try {
             Rooms selectedRoom = tableViewRooms.selectionModelProperty().getValue().getSelectedItem();
-            Rooms room = roomsRepository.getOne(selectedRoom.getId());
-            roomsRepository.delete(room);
+            roomsRepository.delete(selectedRoom);
             init();
             clearAllEdits();
         } catch (NullPointerException e) {

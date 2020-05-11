@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  ~ Copyright (c) 2020. 
+  ~ @author Raschevkin Alexander (ralnik@mail.ru)
+  -->
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.ralnik.main.controller.positionform.FXMLPositionFormController">
+   <children>
+      <BorderPane prefHeight="118.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <Pane prefHeight="118.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button layoutX="350.0" layoutY="31.0" mnemonicParsing="false" text="Добавить" onAction="#buttonAddOnClick"/>
+                  <Button layoutX="432.0" layoutY="31.0" mnemonicParsing="false" text="Изменить" onAction="#buttonEditOnClick"/>
+                  <Button layoutX="517.0" layoutY="31.0" mnemonicParsing="false" text="Удалить" onAction="#buttonDeleteOnClick"/>
+                  <Label layoutX="22.0" layoutY="14.0" text="Должность" />
+                  <TextField fx:id="namePositionEdit" layoutX="22.0" layoutY="31.0" prefHeight="25.0" prefWidth="240.0" />
+                  <Label layoutX="22.0" layoutY="59.0" text="Дополнительная информация" />
+                  <TextField fx:id="commentEdit" layoutX="22.0" layoutY="79.0" prefHeight="25.0" prefWidth="557.0" />
+               </children></Pane>
+         </bottom>
+         <center>
+            <TableView fx:id="tablePosition" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" onMouseClicked="#doubleClickTablePosition"/>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
