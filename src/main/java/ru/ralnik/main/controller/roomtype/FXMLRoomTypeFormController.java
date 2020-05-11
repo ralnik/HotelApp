@@ -84,7 +84,7 @@ public class FXMLRoomTypeFormController implements Initializable {
         } catch (NullPointerException e) {
             log.error("TableView item is not selected, error: ", e);
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText(null);
             alert.setContentText("Не выбран элемент!");

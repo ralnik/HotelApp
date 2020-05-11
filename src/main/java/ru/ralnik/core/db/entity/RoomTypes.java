@@ -25,4 +25,9 @@ public class RoomTypes {
 
     @Column
     private String comments;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

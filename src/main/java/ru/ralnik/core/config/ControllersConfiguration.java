@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.ralnik.core.config.entity.ViewHolder;
 import ru.ralnik.main.controller.mainform.FXMLMainFormController;
+import ru.ralnik.main.controller.roomsform.FXMLRoomsFormController;
 import ru.ralnik.main.controller.roomtype.FXMLRoomTypeFormController;
 
 import java.io.InputStream;
@@ -28,6 +29,11 @@ public class ControllersConfiguration {
         return loadView("ru/ralnik/main/roomtypeforms/RoomTypeForm.fxml");
     }
 
+    @Bean(name = "roomsform")
+    public ViewHolder getRoomsView() {
+        return loadView("ru/ralnik/main/roomsforms/RoomsForm.fxml");
+    }
+
     /**
      * Именно благодаря этому методу мы добавили контроллер в контекст спринга,
      * и заставили его произвести все необходимые инъекции.
@@ -35,6 +41,11 @@ public class ControllersConfiguration {
     @Bean
     public FXMLMainFormController getMainController() {
         return (FXMLMainFormController) getMainView().getController();
+    }
+
+    @Bean
+    public FXMLRoomsFormController getRoomsController() {
+        return (FXMLRoomsFormController) getRoomsView().getController();
     }
 
     @Bean

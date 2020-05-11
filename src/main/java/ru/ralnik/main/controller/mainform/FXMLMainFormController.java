@@ -33,6 +33,8 @@ public class FXMLMainFormController {
 
     @Value("${ui.roomTypeFormTitle}")
     private String roomTypeFormTitle;
+    @Value("${ui.roomFormTitle}")
+    private String roomFormTitle;
 
     @Autowired
     private RecieptionListRepository recieptionListRepository;
@@ -43,6 +45,10 @@ public class FXMLMainFormController {
     @Autowired
     private ViewHolder roomTypeView;
 
+    @Qualifier("roomsform")
+    @Autowired
+    private ViewHolder roomView;
+
     @FXML
     private TableView<RecieptionList> tableRecieptionList;
     @FXML
@@ -51,6 +57,7 @@ public class FXMLMainFormController {
     private MenuItem menuRoomType;
 
     private Stage roomTypeStage;
+    private Stage roomStage;
 
     @FXML
     public void initialize() {
@@ -194,7 +201,6 @@ public class FXMLMainFormController {
         tableReserveList.setItems(reservedObservableList);
     }
 
-    @FXML
     public void menuRoomTypeOnClick() {
         if (roomTypeStage == null) {
             roomTypeStage = new Stage();
@@ -205,5 +211,17 @@ public class FXMLMainFormController {
         }
         roomTypeStage.show();
         roomTypeStage.setOnCloseRequest(event -> roomTypeStage.hide());
+    }
+
+    public void menuRoomOnClick() {
+        if (roomStage == null) {
+            roomStage = new Stage();
+            roomStage.setTitle(roomFormTitle);
+            roomStage.setScene(new Scene(roomView.getView()));
+            roomStage.setResizable(true);
+            roomStage.centerOnScreen();
+        }
+        roomStage.show();
+        roomStage.setOnCloseRequest(event -> roomStage.hide());
     }
 }
