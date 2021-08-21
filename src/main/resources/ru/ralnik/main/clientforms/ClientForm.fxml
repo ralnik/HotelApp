@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+  ~ Copyright (c) 2020. 
+  ~ @author Raschevkin Alexander (ralnik@mail.ru)
+  -->
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.ralnik.main.controller.clientform.FXMLClientFormController">
+    <children>
+        <BorderPane prefHeight="118.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <bottom>
+                <Pane prefHeight="52.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#buttonAddOnClick" text="Добавить" />
+                        <Button layoutX="96.0" layoutY="14.0" mnemonicParsing="false" onAction="#buttonEditOnClick" text="Изменить" />
+                        <Button layoutX="181.0" layoutY="14.0" mnemonicParsing="false" onAction="#buttonDeleteOnClick" text="Удалить" />
+                    </children></Pane>
+            </bottom>
+            <center>
+                <TableView fx:id="clientTableView" onMouseClicked="#doubleClickTablePosition" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

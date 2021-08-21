@@ -19,7 +19,7 @@
                   <MenuItem fx:id="menuRoomType" mnemonicParsing="false" text="Тип номера" onAction="#menuRoomTypeOnClick"/>
                   <MenuItem mnemonicParsing="false" text="Список номеров" onAction="#menuRoomOnClick"/>
                   <MenuItem mnemonicParsing="false" text="Специалисты" />
-                  <MenuItem mnemonicParsing="false" text="Клиенты" />
+                  <MenuItem mnemonicParsing="false" text="Клиенты" onAction="#menuClientOnClick"/>
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Справка">

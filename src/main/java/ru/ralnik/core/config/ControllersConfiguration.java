@@ -10,6 +10,8 @@ import lombok.SneakyThrows;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.ralnik.core.config.entity.ViewHolder;
+import ru.ralnik.main.controller.clientform.FXMLAddClientFormController;
+import ru.ralnik.main.controller.clientform.FXMLClientFormController;
 import ru.ralnik.main.controller.mainform.FXMLMainFormController;
 import ru.ralnik.main.controller.positionform.FXMLPositionFormController;
 import ru.ralnik.main.controller.roomsform.FXMLRoomsFormController;
@@ -40,6 +42,16 @@ public class ControllersConfiguration {
         return loadView("ru/ralnik/main/positionforms/PositionForm.fxml");
     }
 
+    @Bean(name = "clientform")
+    public ViewHolder getClientView() {
+        return loadView("ru/ralnik/main/clientforms/ClientForm.fxml");
+    }
+
+    @Bean(name = "addclientform")
+    public ViewHolder getAddClientView() {
+        return loadView("ru/ralnik/main/clientforms/AddClientForm.fxml");
+    }
+
     /**
      * Именно благодаря этому методу мы добавили контроллер в контекст спринга,
      * и заставили его произвести все необходимые инъекции.
@@ -62,6 +74,16 @@ public class ControllersConfiguration {
     @Bean
     public FXMLPositionFormController getPositionsController() {
         return (FXMLPositionFormController) getPositionsView().getController();
+    }
+
+    @Bean
+    public FXMLClientFormController getClientFormController() {
+        return (FXMLClientFormController) getClientView().getController();
+    }
+
+    @Bean
+    public FXMLAddClientFormController getAddClientFormController() {
+        return (FXMLAddClientFormController) getAddClientView().getController();
     }
 
     @SneakyThrows

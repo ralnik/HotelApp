@@ -37,6 +37,8 @@ public class FXMLMainFormController {
     private String roomFormTitle;
     @Value("${ui.positionTitle}")
     private String positionTitle;
+    @Value("${ui.clientTitle}")
+    private String clientTitle;
 
     @Autowired
     private RecieptionListRepository recieptionListRepository;
@@ -55,6 +57,10 @@ public class FXMLMainFormController {
     @Autowired
     private ViewHolder positionView;
 
+    @Qualifier("clientform")
+    @Autowired
+    private ViewHolder clientView;
+
     @FXML
     private TableView<RecieptionList> tableRecieptionList;
     @FXML
@@ -65,6 +71,7 @@ public class FXMLMainFormController {
     private Stage roomTypeStage;
     private Stage roomStage;
     private Stage positionStage;
+    private Stage clientStage;
 
     @FXML
     public void initialize() {
@@ -125,9 +132,6 @@ public class FXMLMainFormController {
                                 " кем выдан: " + param.getValue().getClient().getPasportRecievedPlace()
                 )
         );
-
-        TableColumn<RecieptionList, String> otCol = new TableColumn("Отчество");
-        otCol.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getSpecialist().getOt()));
 
         TableColumn clientCol = new TableColumn("Клиент");
         clientCol.getColumns().addAll(fioClientCol, pasportClient);
@@ -242,5 +246,17 @@ public class FXMLMainFormController {
         }
         positionStage.show();
         positionStage.setOnCloseRequest(event -> positionStage.hide());
+    }
+
+    public void menuClientOnClick() {
+        if (clientStage == null) {
+            clientStage = new Stage();
+            clientStage.setTitle(clientTitle);
+            clientStage.setScene(new Scene(clientView.getView()));
+            clientStage.setResizable(true);
+            clientStage.centerOnScreen();
+        }
+        clientStage.show();
+        clientStage.setOnCloseRequest(event -> clientStage.hide());
     }
 }
